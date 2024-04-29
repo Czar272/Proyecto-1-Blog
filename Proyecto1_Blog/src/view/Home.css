@@ -1,0 +1,100 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(95, 94, 94);
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 20%;
+    /* border: 1px solid black; */
+    justify-content: center;
+    align-items: center;
+}
+
+.header1 {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    background-color: transparent;
+    justify-content: center;
+    align-items: left;
+    padding: 5%;
+}
+
+.header2 {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    justify-content: right ;
+    align-items: center;
+}
+.header3 {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.BarraBusqueda {
+    display: flex;
+    height: 20%;
+    width: 50%;
+    border-radius: 20px;
+    resize: none;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    text-size-adjust: 100%;
+    font-size: 1em;
+}
+
+.txt {
+    margin: 5%;
+}
+.opciones {
+    display: flex;
+    height: 30%;
+    width: 30%;
+    background-image: url(../assets/img/menu-hamburguesa.png);
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70%;
+    /* border: 1px solid black; */
+    background-image: url('../assets/img/img1.jpeg');
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid black; */
+}
