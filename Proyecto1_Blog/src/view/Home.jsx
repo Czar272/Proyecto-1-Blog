@@ -10,6 +10,13 @@ import MGSV from '../assets/img/MGSV.webp'
 
 function Home(){
 
+    const handleLogin = () => {
+        const usuario = 'Admin'
+
+    }
+
+    
+    const usuario = 'Comun'
     const data = [
         {id: 1, title: 'Metal Gear',                                description: 'En el año de 1995, en una gigantesca fortaleza conocida como Outer Heaven, fundada por un mercenario legendario, se está construyendo un arma gigante de destrucción masiva. El gobierno de los Estados Unidos decide contactar a la Unidad de Fuerzas Especiales FOXHOUND. Big Boss, comandante de FOXHOUND, envía a su agente más fiable, Gray Fox. Sin embargo, antes de que pueda ser recolectada información alguna, Gray Fox desaparece siendo las palabras de su último mensaje "Metal Gear..." Todo depende ahora del novato recluta de FOXHOUND Solid Snake para inflitrarse en Outer Heaven y poner alto a la construcción del arma más poderosa del mundo.',                                                                                                                                                                 imgName:'Imagen No. 1', img: MetalGear,   imgFoot: 'Pablo Cesar Lopez Medina #22535'},
         {id: 2, title: 'Metal Gear 2: Solid Snake',                 description: 'Cuatro años después, Solid Snake se ha jubilado. Pero nada anda bien, debido a que el creador de una nueva especie de alga conocida como OILIX, la cual puede producir petróleo con alto grado de hidrocarburos con poco gasto y esfuerzo, ha sido secuestrado por la nación renegada de Zanzibar, la cual se ha convertido en la única nación remanente con capacidad de ataque nuclear por vía de Metal Gear D. El nuevo comandante de FOXHOUND, Coronel Roy Campbell, no tiene otra opción más que sacar a Solid Snake de su retiro. Snake tiene que infiltrarse en la fortificada nación, rescatar a Dr. Kio Marv y recuperar el programa del OILIX, y hacerse cargo de los hombres detrás de los terroristas...',                                                                                                                  imgName:'Imagen No. 2', img: MetalGear2,  imgFoot: 'Pablo Cesar Lopez Medina #22535'},
@@ -31,7 +38,7 @@ function Home(){
                     </div>
                     <div className="header2">
                         <h2 className='txt'>Home</h2>
-                        <h2 className='txt'>About</h2>
+                        <h2 className='txt' onClick={{handleLogin}}>Log In</h2>
                         <h2 className='txt'>Service</h2>
                         <h2 className='txt'>Help</h2>
                     </div>
@@ -47,16 +54,18 @@ function Home(){
                                 <div className="descriptionsqr"> <p className='description'>{item.description}</p></div>
                             </div>
                             <div className="cardCol2">
-                                <div className="imgName"><h3>{item.imgName}</h3></div>
+                                <div className="imgName"><h3> </h3></div>
                                 <div className="img1">
                                     <img src= {item.img} className='img'/>
                                 </div>
-                                <div className="imgFoot">{item.imgFoot}</div>
+                                <div className="imgFoot"><p>{item.imgFoot}</p></div>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div className="footer"></div>
+                <div className="footer">
+                    <h4 className='infoUsuario'>Tipo de Usuario: {usuario}</h4>
+                </div>
             </div>        
         </>
     )
