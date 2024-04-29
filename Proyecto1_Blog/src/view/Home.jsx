@@ -21,7 +21,7 @@ function Home(){
                 <div className="content">
                     <div className="card">
                         <div className="cardCol1">
-                            <div className="titlesqr"> <h1 className='title'>Metal Gear </h1> </div>
+                            <div className="titlesqr"> <h1 className='title'>Metal Gear </h1> </div> 
                             <div className="descriptionsqr"> <h3 className='description'>En el año de 1995, en una gigantesca fortaleza conocida como Outer Heaven, fundada por un mercenario legendario, se está construyendo un arma gigante de destrucción masiva. El gobierno de los Estados Unidos decide contactar a la Unidad de Fuerzas Especiales FOXHOUND. Big Boss, comandante de FOXHOUND, envía a su agente más fiable, Gray Fox. Sin embargo, antes de que pueda ser recolectada información alguna, Gray Fox desaparece siendo las palabras de su último mensaje "Metal Gear..." Todo depende ahora del novato recluta de FOXHOUND Solid Snake para inflitrarse en Outer Heaven y poner alto a la construcción del arma más poderosa del mundo.</h3></div>
                         </div>
                         <div className="cardCol2">
