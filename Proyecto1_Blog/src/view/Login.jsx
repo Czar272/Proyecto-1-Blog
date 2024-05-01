@@ -19,8 +19,12 @@ function Login({setRutaActual}){
                         <textarea className="txtbox" rows={1} placeholder="Usuario"></textarea>
                         <textarea className="txtbox" rows={1} placeholder="Contraseña" value={text} onChange={handleChange}></textarea>
                         <div className="contBtns">
+                            <a href="/admin">
                             <button className='btn' onClick={() =>{setRutaActual("/admin")}}>Aceptar</button>
+                            </a>
+                            <a href="/home">
                             <button className='btn' onClick={()=>{setRutaActual("/home")}}>Cancelar</button>
+                            </a>
                         </div>
                     </div>
                 </div>

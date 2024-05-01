@@ -8,5 +8,5 @@ ENV MYSQL_ROOT_PASSWORD=root_password
 ENV MYSQL_USER=blog_user
 ENV MYSQL_PASSWORD=blog_password
 
-# Copia el esquema .sql en l aimagen
+# Copia el esquema .sql en la imagen
 COPY schema.sql ./docker-entrypoint-initdb.d/

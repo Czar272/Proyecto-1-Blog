@@ -15,10 +15,10 @@ function App() {
         <nav >
           <ul>
             <li>
-              <a href="/home" onClick={(e) => {e.preventDefault(); handleNavigation('/home')}}> Home</a>
+              <a href="/home" > Home</a>
             </li>
             <li>
-              <a href="/login" onClick={(e) => {e.preventDefault(); handleNavigation('/login')}}>Login</a>
+              <a href="/login" >Login</a>
             </li>            
           </ul>
         </nav>

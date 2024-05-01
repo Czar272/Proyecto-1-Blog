@@ -1,9 +1,13 @@
 import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Admin from './Admin.jsx'
+import { useState } from 'react'
 
 function Router({ruta, setRutaActual}){
-    switch(ruta){
+    const [urlActual, setUrlActual] = useState(window.location.pathname)
+
+
+    switch(urlActual){
         case "/home":
             return <Home setRutaActual={setRutaActual}/> 
         case "/login":

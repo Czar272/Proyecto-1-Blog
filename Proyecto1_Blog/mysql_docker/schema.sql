@@ -9,8 +9,8 @@ FLUSH PRIVILEGES;
 
 CREATE TABLE IF NOT EXISTS juego (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR NOT NULL, 
-    cont VARCHAR NOT NULL, 
-    img VARCHAR NOT NULL, 
-    creator VARCHAR NOT NULL
+    title TEXT NOT NULL, 
+    cont TEXT NOT NULL, 
+    img TEXT NOT NULL, 
+    creator TEXT NOT NULL
 );

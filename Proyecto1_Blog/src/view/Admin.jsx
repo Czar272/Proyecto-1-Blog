@@ -49,11 +49,11 @@ function Admin({setRutaActual}){
                         <div className="opciones"></div>
                     </div>
                     <div className="header2">
-                        <a href='#' onClick={(e) => {e.preventDefault(); handleNavigation('/Home')}} className='txt'>
+                        <a href='/home' className='txt'>
                             <h2 className='txt'>Home</h2>
                         </a>
 
-                        <a href="/login" onClick={(e) => {e.preventDefault(); handleNavigation('/login')}} className='txt'>
+                        <a href="/login" className='txt'>
                             <h2 className='txt'>Login</h2>
                         </a>
 
