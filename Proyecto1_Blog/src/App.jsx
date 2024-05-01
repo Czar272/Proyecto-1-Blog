@@ -1,16 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Home from './view/Home'
-import Login from './view/Login'
+import Router from './view/Router'
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [rutaActual, setRutaActual] = useState("")
+
+  const handleNavigation = (ruta) => {
+    setRutaActual(ruta) 
+  }
 
   return (
     <>
-    
-    <Login/>
+      <div className="contenedor">
+        <nav >
+          <ul>
+            <li>
+              <a href="/home" onClick={(e) => {e.preventDefault(); handleNavigation('/home')}}> Home</a>
+            </li>
+            <li>
+              <a href="/login" onClick={(e) => {e.preventDefault(); handleNavigation('/login')}}>Login</a>
+            </li>            
+          </ul>
+        </nav>
+        <div className="contenedor-rutas">
+        <Router ruta={rutaActual} setRutaActual={setRutaActual} />
+        </div>
+      </div>
     </>
   )
 }

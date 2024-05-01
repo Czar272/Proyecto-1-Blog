@@ -1,4 +1,4 @@
-import './Home.css'
+import './Admin.css'
 import MetalGear from '../assets/img/MetalGear.webp'
 import MetalGear2 from '../assets/img/MetalGear2.webp'
 import MGS from '../assets/img/MGS.webp'
@@ -7,11 +7,12 @@ import MGS3 from '../assets/img/MGS3.webp'
 import MGS4 from '../assets/img/MGS4.webp'
 import MGSPW from '../assets/img/MGSPW.webp'
 import MGSV from '../assets/img/MGSV.webp'
+import opc from '../assets/img/menu-puntos-vertical.png'
 import { useState } from 'react'
 
-function Home({setRutaActual}){
+function Admin({setRutaActual}){
 
-    const [usuario,setUsuario] = useState("Comun")
+    const [usuario,setUsuario] = useState("Admin")
     const [busqueda, setBusqueda] = useState("")
     // const [rutaActual, setRutaActual] = useState("Menu")
 
@@ -48,9 +49,9 @@ function Home({setRutaActual}){
                         <div className="opciones"></div>
                     </div>
                     <div className="header2">
-                        {/* <a href='#'  className='txt'> */}
+                        <a href='#' onClick={(e) => {e.preventDefault(); handleNavigation('/Home')}} className='txt'>
                             <h2 className='txt'>Home</h2>
-                        {/* </a> */}
+                        </a>
 
                         <a href="/login" onClick={(e) => {e.preventDefault(); handleNavigation('/login')}} className='txt'>
                             <h2 className='txt'>Login</h2>
@@ -72,7 +73,7 @@ function Home({setRutaActual}){
                     {resultados.map(item => (
                         <div className="card">
                             <div className="cardCol1">
-                                <div className="titlesqr"> <p className='title'>{item.title}</p> </div> 
+                                <div className="titlesqr"><img src = {opc} alt="" className='opcionesCard' /> <p className='title'>{item.title}</p> </div> 
                                 <div className="descriptionsqr"> <p className='description'>{item.description}</p></div>
                             </div>
                             <div className="cardCol2">
@@ -92,4 +93,4 @@ function Home({setRutaActual}){
         </>
     )
 }
-export default Home;
+export default Admin;
