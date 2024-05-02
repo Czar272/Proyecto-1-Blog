@@ -14,7 +14,14 @@ function Admin({setRutaActual}){
 
     const [usuario,setUsuario] = useState("Admin")
     const [busqueda, setBusqueda] = useState("")
+    const [showMenu, setShowMenu] = useState(false)
+    const [selectedItemId, setSelectedItemId] = useState(null)
     // const [rutaActual, setRutaActual] = useState("Menu")
+
+    const toggleMenu = (itemID) => {
+        setShowMenu(!showMenu || itemID !== selectedItemId)
+        setSelectedItemId(itemID === selectedItemId ? null: itemID)
+    }
 
     const handleNavigation = (ruta) => {
         setRutaActual(ruta) 
@@ -72,8 +79,14 @@ function Admin({setRutaActual}){
                 <div className="content">
                     {resultados.map(item => (
                         <div className="card">
+                            {showMenu && selectedItemId === item.id && (
+                                <div className="menuOpciones">
+                                    <button onClick={() => console.log(`Editar ${item.title}`)}>Editar</button>
+                                    <button onClick={() => console.log(`Eliminar ${item.title}`)}>Eliminar</button>
+                                </div>
+                            )}
                             <div className="cardCol1">
-                                <div className="titlesqr"><img src = {opc} alt="" className='opcionesCard' /> <p className='title'>{item.title}</p> </div> 
+                                <div className="titlesqr"><img src = {opc} alt="" className='opcionesCard' onClick={() => toggleMenu(item.id)}/> <p className='title'>{item.title}</p> </div> 
                                 <div className="descriptionsqr"> <p className='description'>{item.description}</p></div>
                             </div>
                             <div className="cardCol2">
@@ -83,6 +96,7 @@ function Admin({setRutaActual}){
                                 </div>
                                 <div className="imgFoot"><p className='autortxt'>{item.imgFoot}</p></div>
                             </div>
+                            
                         </div>
                     ))}
                 </div>

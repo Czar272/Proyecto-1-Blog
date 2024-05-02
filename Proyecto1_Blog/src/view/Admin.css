@@ -9,6 +9,12 @@
     background-color: rgb(48, 46, 60);
 }
 
+.menuOpciones{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
 .header {
     display: flex;
     flex-direction: row;
