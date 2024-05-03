@@ -3,7 +3,7 @@ import './App.css'
 import Router from './view/Router'
 function App() {
 
-  const [rutaActual, setRutaActual] = useState("")
+  const [rutaActual, setRutaActual] = useState("/home")
 
   const handleNavigation = (ruta) => {
     setRutaActual(ruta) 
