@@ -1,6 +1,7 @@
 import './Admin.css'
 import opc from '../assets/img/menu-puntos-vertical.png'
 import { useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 import Popup from './Popup'
 
 function Admin({setUrlActual}){
@@ -9,7 +10,7 @@ function Admin({setUrlActual}){
     const [busqueda, setBusqueda] = useState("")
     const [showMenu, setShowMenu] = useState(false)
     const [selectedItemId, setSelectedItemId] = useState(null)
-    const [juegosData, setJuegosData] = useState([])
+    const [data, setData] = useState([])
     const popupRef = useRef(null)
 
 
@@ -18,11 +19,10 @@ function Admin({setUrlActual}){
         const jsonData = await response.json()
 
         const juegosData = jsonData.data
-        setJuegosData(juegosData)
+        setData(juegosData)
     }
 
     useEffect(() => {
-        // Llamada a la API cuando el componente se monta
         apiCall()
     },[])
 
@@ -76,6 +76,7 @@ function Admin({setUrlActual}){
 
     const handleEdit = () => {
         setUrlActual("/edit")
+        window.location.pathname = '/edit'
         console.log(`Editar ${selectedItemId}`);
         setShowMenu(false);
     };
@@ -92,23 +93,12 @@ function Admin({setUrlActual}){
     const handleBusqueda = (event) => {
         setBusqueda(event.target.value);
     };  
-    
-    // const data = [
-    //     {id: 1, title: 'Metal Gear',                                cont: 'En el año de 1995, en una gigantesca fortaleza conocida como Outer Heaven, fundada por un mercenario legendario, se está construyendo un arma gigante de destrucción masiva. El gobierno de los Estados Unidos decide contactar a la Unidad de Fuerzas Especiales FOXHOUND. "',                                                                                                                                        img: MetalGear,   creator: 'Cesar Lopez '},
-    //     {id: 2, title: 'Metal Gear 2: Solid Snake',                 cont: 'Cuatro años después, Solid Snake se ha jubilado. Pero nada anda bien, debido a que el creador de una nueva especie de alga conocida como OILIX, la cual puede producir petróleo con alto grado de hidrocarburos con poco gasto y esfuerzo, ha sido secuestrado por la nación renegada de Zanzibar. ',                                                                                                                  img: MetalGear2,  creator: 'Pablo Medina '},
-    //     {id: 3, title: 'Metal Gear Solid',                          cont: 'En el año 2005, durante una misión de entrenamiento rutinaria en una remota instalación de depósitos de residuos nucleares en la isla de Shadow Moses, miembros de FOXHOUND (que también se hacen llamar los Hijos de Big Boss) liderados por Liquid Snake se rebelan en contra del gobierno de los Estados Unidos. ',                                                                                                 img: MGS,         creator: 'Ariana Perez '},
-    //     {id: 4, title: 'Metal Gear Solid 2: Sons of Liberty',       cont: 'Solid Snake y Otacon, después de sobrevivir al incidente de Shadow Moses, forman Philanthropy con la intención de eliminar la imponente amenaza de Metal Gears. En el año 2007, se ha filtrado información que los Marines han construido un nuevo Metal Gear para combatir la sobreabundancia de Metal Gears.',                                                                                                       img: MGS2,        creator: 'Kim Morales '},
-    //     {id: 5, title: 'Metal Gear Solid 3: Snake Eater',           cont: 'Al final de la Segunda Guerra Mundial, el mundo quedó dividido en dos, marcando el inicio de la Guerra Fría. En el año 1964, el agente de FOX Naked Snake es enviado a Tselinoyarsk en una Misión virtuosa para rescatar al científico ruso Sokolov, quien estaba trabajando en el Shagohod. ',                                                                                                                        img: MGS3,        creator: 'Andreina Par '},
-    //     {id: 6, title: 'Metal Gear Solid 4: Guns of the Patriots',  cont: 'En el año 2014, la restricción de la intervención militar en territorio extranjero ha disminuido, impulsando la necesidad de Compañías Militares Privadas (PMCs) para luchar contra las guerras por poderes con fines comerciales. ',                                                                                                                                                                                  img: MGS4,        creator: 'Briana Carrera '},
-    //     {id: 7, title: 'Metal Gear Solid: Peace Walker',            cont: 'En 1974, Snake/Big Boss ha creado sus Soldados sin Fronteras en Colombia, Sudamérica, donde él fue abordado por unos visitantes (Ramón Gálvez Mena y Paz Ortega Andrade) de Costa Rica, una Nación sin EjércitoA raíz de la Crisis de los Misiles de Cuba, debido a que Latinoamérica se convirtió en una pieza clave para mantener el balance de poder entre Oriente y Occidente.',                                   img: MGSPW,       creator: 'Fernando Leal '},
-    //     {id: 8, title: 'Metal Gear Solid V: The Phantom Pain',      cont: 'Metal Gear Solid V: Ground Zeroes se desarrolla un año después de Metal Gear Solid: Peace Walker. Relatando todo lo que ocurrió exactamente después de los hechos de Peace Walker, y el periodo anterior a la fundación de Outer Heaven. ',                                                                                                                                                                            img: MGSV,        creator: 'Valeria Bardales '}
-    // ]
 
-    // const resultados = data.filter((item) =>
-    //     item.title.toLowerCase().includes(busqueda.toLowerCase()) ||
-    //     item.description.toLowerCase().includes(busqueda.toLowerCase()) ||
-    //     item.imgFoot.toLowerCase().includes(busqueda.toLowerCase())
-    // );
+    const resultados = data.filter((item) =>
+        item.title.includes(busqueda) ||
+        item.description.includes(busqueda) ||
+        item.imgFoot.includes(busqueda)
+    );
 
     return(
         <>
@@ -139,7 +129,7 @@ function Admin({setUrlActual}){
                     </div>
                 </div>
                 <div className="content">
-                    {juegosData.map(item => (
+                    {resultados.map(item => (
                         <div className="card" key={item.title}>
                             {showMenu && selectedItemId === item.id && (
                                 <div ref={popupRef}>
@@ -172,4 +162,9 @@ function Admin({setUrlActual}){
         </>
     )
 }
+
+Admin.propTypes = {
+    setUrlActual: PropTypes.func.isRequired
+}
+
 export default Admin;

@@ -1,7 +1,7 @@
 // import { useEffect, useState } from 'react'
 import './Edit.css' 
 
-function Edit() {
+function Edit({setUrlActual}) {
     // const [title, setTitle] = useState('')
     // const [cont, setContent] = useState('')
     // const [img, setImage] = useState('')
@@ -29,7 +29,15 @@ function Edit() {
     //     // console.log(`El post al que se quiere acceder es: ${blogId}`)
     // },[])
 
+    const handleCancelar = () => {
+        setUrlActual('/admin')
+        window.location.pathname = '/admin'
+    }
 
+    const handleEditar = () => {
+        setUrlActual('/admin')
+        window.location.pathname = '/admin'
+    }
     return(
         <>
         <div className="contenedorEdit">
@@ -49,6 +57,10 @@ function Edit() {
                 <div className="row">
                     <div className="txt">Creator: </div>
                     <input type="text" className='textArea'/>
+                </div>
+                <div className="row">
+                    <button onClick={handleEditar}> Editar </button>
+                    <button onClick={handleCancelar}> Cancelar </button>
                 </div>
             </div>
         </div>

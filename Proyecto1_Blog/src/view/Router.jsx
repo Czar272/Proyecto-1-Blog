@@ -17,7 +17,7 @@ function Router({ruta}){
         case "/admin":
             return <Admin ruta = {ruta} setUrlActual={setUrlActual} />
         case "/edit":
-            return <Edit/>
+            return <Edit setUrlActual={setUrlActual}/>
         default:
             return (
                 <h1>ruta actual {ruta}</h1>
@@ -27,5 +27,5 @@ function Router({ruta}){
 export default Router;
 
 Router.propTypes = {
-    ruta: PropTypes.string.isRequired // Corregido a 'string'
+    ruta: PropTypes.string.isRequired 
 }

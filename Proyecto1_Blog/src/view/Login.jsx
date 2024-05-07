@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from 'prop-types'
 import './Login.css'
 
 function Login({setUrlActual}){
@@ -27,6 +28,7 @@ function Login({setUrlActual}){
 
         if (username === usuarioC && contra === contraC){
             localStorage.setItem("login", true)
+            window.location.pathname = '/admin'
             setUrlActual("/admin")
 
         } else{
@@ -57,6 +59,10 @@ function Login({setUrlActual}){
         </>
         
     )
+}
+
+Login.propTypes = {
+    setUrlActual: PropTypes.func.isRequired
 }
 
 export default Login

@@ -1,5 +1,6 @@
 // import React from 'react';
 import './Popup.css'
+import PropTypes from 'prop-types'
 
 function Popup({onEdit, onDelete }) {
   return (
@@ -9,5 +10,10 @@ function Popup({onEdit, onDelete }) {
     </div>
   );
 }
+
+Popup.propTypes = {
+  onEdit: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
 
 export default Popup;

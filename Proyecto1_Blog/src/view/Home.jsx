@@ -9,7 +9,6 @@ function Home(){
     // const [rutaActual, setRutaActual] = useState("Menu")
 
     useEffect(() => {
-        // Llamada a la API cuando el componente se monta
         apiCall()
     },[])
 
