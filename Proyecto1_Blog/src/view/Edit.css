@@ -1,0 +1,83 @@
+.contenedorEdit {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/526/344/900/metal-gear-solid-metal-gear-solid-v-ground-zeroes-big-boss-metal-gear-wallpaper-preview.jpg);
+    background-position: 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.cuadro {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    background-color: rgba(128, 128, 128, 0.6);
+    border-radius: 50px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    margin: 1%;
+}
+
+.rowCont {
+    display: flex;
+    flex-direction: row;
+    height: 40%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    margin: 1%;
+    padding: 1%;
+}
+
+.txt {
+    display: flex;
+    height: 100%;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+}
+
+.textArea {
+    display: flex;
+    height: 30%;
+    width: 50%;
+    margin: 5%;
+    resize: none;
+    color: black;
+    background-color: white;
+}
+
+.textAreaCont {
+    /* display: flex; */
+    height: 80%;
+    width: 50%;
+    margin: 5%; 
+    /* resize: none; */
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    /* text-align: justify; */
+    vertical-align: top;
+    line-height: normal;
+}

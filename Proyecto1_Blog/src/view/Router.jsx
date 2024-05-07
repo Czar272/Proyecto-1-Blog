@@ -1,6 +1,7 @@
 import Login from './Login.jsx'
 import Home from './Home.jsx'
 import Admin from './Admin.jsx'
+import Edit from './Edit.jsx'
 import { useState } from 'react'
 
 function Router({ruta, setRutaActual}){
@@ -9,11 +10,13 @@ function Router({ruta, setRutaActual}){
 
     switch(urlActual){
         case "/home":
-            return <Home setRutaActual={setRutaActual}/> 
+            return <Home setUrlActual={setUrlActual}/> 
         case "/login":
-            return <Login setRutaActual={setRutaActual} />
+            return <Login setUrlActual={setUrlActual} />
         case "/admin":
-            return <Admin setRutaActual={setRutaActual} />
+            return <Admin setUrlActual={setUrlActual} />
+        case "/edit":
+            return <Edit/>
         default:
             return (
                 <h1>ruta actual {ruta}</h1>

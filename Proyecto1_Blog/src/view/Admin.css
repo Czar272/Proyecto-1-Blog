@@ -179,6 +179,7 @@
     /* border: 1px solid black; */
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+    z-index: 1;
 }
 
 @media only screen and (max-width: 768px) {
@@ -296,6 +297,7 @@
     /* border: 1px solid black; */
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    z-index: 1;
 }
 
 .imgName {

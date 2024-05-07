@@ -11,7 +11,7 @@ import opc from '../assets/img/menu-puntos-vertical.png'
 import { useEffect, useState, useRef } from 'react'
 import Popup from './Popup'
 
-function Admin({setRutaActual}){
+function Admin({setUrlActual}){
 
     const [usuario,setUsuario] = useState("Admin")
     const [busqueda, setBusqueda] = useState("")
@@ -19,6 +19,37 @@ function Admin({setRutaActual}){
     const [selectedItemId, setSelectedItemId] = useState(null)
     const popupRef = useRef(null)
 
+
+    async function post() {
+        try{
+            const response = await fetch('http://127.0.0.1:3000/juego', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title, 
+                    cont: description, 
+                    img: img, 
+                    creator: imgFoot 
+
+                })
+            })
+
+            if (response.ok) {
+                setRutaActual('/home')
+            } else{
+                const data = await response.json()
+                setError(data.error || 'Error al crear el post')
+            }            
+
+        }catch(e){
+            console.error('Error al cargar la API: ', e)
+            setError('Error al cargar la API')
+            
+        }
+    }
+    
     useEffect(() => {
         function handleClick(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -38,6 +69,7 @@ function Admin({setRutaActual}){
     }
 
     const handleEdit = () => {
+        setUrlActual("/edit")
         console.log(`Editar ${selectedItemId}`);
         setShowMenu(false);
     };
@@ -65,7 +97,6 @@ function Admin({setRutaActual}){
         {id: 7, title: 'Metal Gear Solid: Peace Walker',            cont: 'En 1974, Snake/Big Boss ha creado sus Soldados sin Fronteras en Colombia, Sudamérica, donde él fue abordado por unos visitantes (Ramón Gálvez Mena y Paz Ortega Andrade) de Costa Rica, una Nación sin EjércitoA raíz de la Crisis de los Misiles de Cuba, debido a que Latinoamérica se convirtió en una pieza clave para mantener el balance de poder entre Oriente y Occidente.',                                   img: MGSPW,       creator: 'Fernando Leal '},
         {id: 8, title: 'Metal Gear Solid V: The Phantom Pain',      cont: 'Metal Gear Solid V: Ground Zeroes se desarrolla un año después de Metal Gear Solid: Peace Walker. Relatando todo lo que ocurrió exactamente después de los hechos de Peace Walker, y el periodo anterior a la fundación de Outer Heaven. ',                                                                                                                                                                            img: MGSV,        creator: 'Valeria Bardales '}
     ]
-    
 
     const resultados = data.filter((item) =>
         item.title.toLowerCase().includes(busqueda.toLowerCase()) ||

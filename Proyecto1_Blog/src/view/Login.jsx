@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './Login.css'
 
-function Login({setRutaActual}){
+function Login({setUrlActual}){
 
     const [text, setText] = useState('');
     const [contra, setPassword] = useState('')
@@ -26,7 +26,7 @@ function Login({setRutaActual}){
         const contraC = 'admin'
 
         if (username === usuarioC && contra === contraC){
-            setRutaActual('/admin')
+            setUrlActual("/admin")
 
         } else{
             alert('User or password incorrect')
@@ -43,7 +43,7 @@ function Login({setRutaActual}){
                         <input className="txtbox" rows={1} placeholder="Usuario" value={username} onChange={handleChangeUsername}></input>
                         <input className="txtbox" type="password" rows={1} placeholder="Contraseña" value={contra} onChange={handleChangeContra}></input>
                         <div className="contBtns">
-                            <a href="/admin">
+                            <a onClick={handleLogin} >
                             <button className='btn' >Aceptar</button>
                             </a>
                             <a href="/home">
