@@ -38,11 +38,11 @@ function Home({setRutaActual}){
     };
     
 
-    const resultados = juegosData.filter((item) =>
-        item.title.toLowerCase().includes(busqueda.toLowerCase()) ||
-        item.description.toLowerCase().includes(busqueda.toLowerCase()) ||
-        item.imgFoot.toLowerCase().includes(busqueda.toLowerCase())
-    );
+    // const resultados = juegosData.filter((item) =>
+    //     item.title.toLowerCase().includes(busqueda.toLowerCase()) ||
+    //     item.description.toLowerCase().includes(busqueda.toLowerCase()) ||
+    //     item.imgFoot.toLowerCase().includes(busqueda.toLowerCase())
+    // );
 
     return(
         <>
@@ -73,18 +73,18 @@ function Home({setRutaActual}){
                     </div>
                 </div>
                 <div className="content">
-                    {resultados.map(item => (
+                    {juegosData.map(item => (
                         <div className="card">
                             <div className="cardCol1">
                                 <div className="titlesqr"> <p className='title'>{item.title}</p> </div> 
-                                <div className="descriptionsqr"> <p className='description'>{item.description}</p></div>
+                                <div className="descriptionsqr"> <p className='description'>{item.cont}</p></div>
                             </div>
                             <div className="cardCol2">
                                 <div className="imgName"><h3> </h3></div>
                                 <div className="img1">
                                     <img src= {item.img} className='img'/>
                                 </div>
-                                <div className="imgFoot"><p className='autortxt'>{item.imgFoot}</p></div>
+                                <div className="imgFoot"><p className='autortxt'>{item.creator}</p></div>
                             </div>
                         </div>
                     ))}

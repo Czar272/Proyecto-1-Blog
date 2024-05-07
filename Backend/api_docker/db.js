@@ -1,6 +1,7 @@
-import conn from './conexion.js'
+// import conn from './conexion.js'
+const conn = require('./conexion.js')
 
-export async function getAllPosts () {
+async function getAllPosts () {
     try{
         const [rows] = await conn.query('SELECT * FROM juego')
         return {status: 200, data: rows}
@@ -9,12 +10,11 @@ export async function getAllPosts () {
     } catch(e){
         console.log(e)
         return {status: 500, error: e}
-        
     }
 
 }
 
-export async function createJuego (title, cont, img, creator) {
+async function createJuego (title, cont, img, creator) {
     try {
       const [result] = await conn.query(`INSERT INTO blogs (title, cont, img, creator) VALUES ('${title.replace(/'/g, '\'\'')}', '${cont.replace(/'/g, '\'\'')}', '${img.replace(/'/g, '\'\'')}', '${creator.replace(/'/g, '\'\'')}')`)
       return { status: 201, data: result }
@@ -25,7 +25,7 @@ export async function createJuego (title, cont, img, creator) {
     }
   }
 
-export async function deleteJuego (id) {
+async function deleteJuego (id) {
     try{
         const [existingJuego] = await conn.query(`SELECT * FROM juego WHERE id = ${id}`)
         if(existingJuego.length === 0){
@@ -43,7 +43,7 @@ export async function deleteJuego (id) {
     }
 }
 
-export async function editJuego (id, title, cont, img, creator) {
+async function editJuego (id, title, cont, img, creator) {
     try{
         const [existingJuego] = await conn.query(`SELECT * FROM juego WHERE id = ${id}`)
         if (existingJuego.length === 0) {
@@ -60,7 +60,7 @@ export async function editJuego (id, title, cont, img, creator) {
     }
 }
 
-export async function getJuegoById (id) {
+async function getJuegoById (id) {
     try {
       const [juego] = await conn.query(`SELECT * FROM juego WHERE id = ${id}`)
       if (juego.length === 0) {
@@ -72,3 +72,12 @@ export async function getJuegoById (id) {
       return { status: 500, error: e }
     }
   }
+
+  module.exports = {
+    getAllPosts, 
+    getJuegoById,
+    editJuego, 
+    deleteJuego,
+    createJuego
+  }
+

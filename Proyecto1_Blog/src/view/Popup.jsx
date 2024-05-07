@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import './Popup.css'
 
-function Popup({ onClose, onEdit, onDelete }) {
+function Popup({onEdit, onDelete }) {
   return (
     <div className="popup">
       <button onClick={onEdit} className='btnPu'>Editar</button>

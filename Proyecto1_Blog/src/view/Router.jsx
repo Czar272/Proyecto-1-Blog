@@ -4,7 +4,7 @@ import Admin from './Admin.jsx'
 import Edit from './Edit.jsx'
 import { useState } from 'react'
 
-function Router({ruta, setRutaActual}){
+function Router({ruta}){
     const [urlActual, setUrlActual] = useState(window.location.pathname)
 
 
@@ -14,7 +14,7 @@ function Router({ruta, setRutaActual}){
         case "/login":
             return <Login setUrlActual={setUrlActual} />
         case "/admin":
-            return <Admin setUrlActual={setUrlActual} />
+            return <Admin ruta = {ruta} setUrlActual={setUrlActual} />
         case "/edit":
             return <Edit/>
         default:
