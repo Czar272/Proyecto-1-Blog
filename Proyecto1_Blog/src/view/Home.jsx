@@ -1,17 +1,9 @@
 import './Home.css'
-import MetalGear from '../assets/img/MetalGear.webp'
-import MetalGear2 from '../assets/img/MetalGear2.webp'
-import MGS from '../assets/img/MGS.webp'
-import MGS2 from '../assets/img/MGS2.webp'
-import MGS3 from '../assets/img/MGS3.webp'
-import MGS4 from '../assets/img/MGS4.webp'
-import MGSPW from '../assets/img/MGSPW.webp'
-import MGSV from '../assets/img/MGSV.webp'
 import { useState, useEffect } from 'react'
 
-function Home({setRutaActual}){
+function Home(){
 
-    const [usuario,setUsuario] = useState("Comun")
+    const [usuario] = useState("Comun")
     const [busqueda, setBusqueda] = useState("")
     const [juegosData, setJuegosData] = useState([])
     // const [rutaActual, setRutaActual] = useState("Menu")
@@ -29,9 +21,9 @@ function Home({setRutaActual}){
         setJuegosData(juegosData)
     }
 
-    const handleNavigation = (ruta) => {
-        setRutaActual(ruta) 
-      }
+    // const handleNavigation = (ruta) => {
+    //     setRutaActual(ruta) 
+    //   }
 
     const handleBusqueda = (event) => {
         setBusqueda(event.target.value);
@@ -74,7 +66,7 @@ function Home({setRutaActual}){
                 </div>
                 <div className="content">
                     {juegosData.map(item => (
-                        <div className="card">
+                        <div className="card" key={item.title}>
                             <div className="cardCol1">
                                 <div className="titlesqr"> <p className='title'>{item.title}</p> </div> 
                                 <div className="descriptionsqr"> <p className='description'>{item.cont}</p></div>

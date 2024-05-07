@@ -140,7 +140,7 @@ function Admin({setUrlActual}){
                 </div>
                 <div className="content">
                     {juegosData.map(item => (
-                        <div className="card">
+                        <div className="card" key={item.title}>
                             {showMenu && selectedItemId === item.id && (
                                 <div ref={popupRef}>
                                     <Popup

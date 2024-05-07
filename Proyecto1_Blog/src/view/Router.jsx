@@ -3,6 +3,7 @@ import Home from './Home.jsx'
 import Admin from './Admin.jsx'
 import Edit from './Edit.jsx'
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 
 function Router({ruta}){
     const [urlActual, setUrlActual] = useState(window.location.pathname)
@@ -24,3 +25,7 @@ function Router({ruta}){
     }
 }
 export default Router;
+
+Router.propTypes = {
+    ruta: PropTypes.string.isRequired // Corregido a 'string'
+}

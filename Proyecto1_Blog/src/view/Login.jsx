@@ -3,15 +3,15 @@ import './Login.css'
 
 function Login({setUrlActual}){
 
-    const [text, setText] = useState('');
+    // const [ setText] = useState('');
     const [contra, setPassword] = useState('')
     const [username, setUsername] = useState('')
 
-    const handleChange = (event) => {
-        const inputValue = event.target.value;
-        const hiddenText = inputValue.replace(/./g, '*');
-        setText(hiddenText);
-    };
+    // const handleChange = (event) => {
+    //     const inputValue = event.target.value;
+    //     const hiddenText = inputValue.replace(/./g, '*');
+    //     setText(hiddenText);
+    // };
 
     const handleChangeUsername = (event) => {
         setUsername(event.target.value)
@@ -26,6 +26,7 @@ function Login({setUrlActual}){
         const contraC = 'admin'
 
         if (username === usuarioC && contra === contraC){
+            localStorage.setItem("login", true)
             setUrlActual("/admin")
 
         } else{

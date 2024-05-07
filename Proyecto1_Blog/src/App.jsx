@@ -5,9 +5,9 @@ function App() {
 
   const [rutaActual, setRutaActual] = useState("/home")
 
-  const handleNavigation = (ruta) => {
-    setRutaActual(ruta) 
-  }
+  // const handleNavigation = (ruta) => {
+  //   setRutaActual(ruta) 
+  // }
 
   return (
     <>
