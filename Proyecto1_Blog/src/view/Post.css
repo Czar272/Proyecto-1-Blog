@@ -1,11 +1,11 @@
-.contenedorEdit {
+.contenedorPost {
     position: absolute;
     display: flex;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url(https://c4.wallpaperflare.com/wallpaper/526/344/900/metal-gear-solid-metal-gear-solid-v-ground-zeroes-big-boss-metal-gear-wallpaper-preview.jpg);
+    background-image: url(https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2015/09/518036-que-no-esta-tema-principal-metal-gear-solid-phantom-pain.jpg);
     /* background-image: url('../assets/img/wallpaper.jpg'); */
     background-position: 0%;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@
     justify-content: center;
 }
 
-.cuadro {
+.cuadroPost {
     display: flex;
     flex-direction: column;
     height: 80%;
@@ -22,11 +22,11 @@
     align-items: center;
     justify-content: center;
     border: 1px solid white;
-    background-color: rgba(149, 135, 113, 0.6);
+    background-color: rgba(58, 58, 58, 0.6);
     border-radius: 50px;
 }
 
-.row {
+.rowPost {
     display: flex;
     flex-direction: row;
     height: 10%;
@@ -38,7 +38,7 @@
     margin: 1%;
 }
 
-.rowCont {
+.rowContPost {
     display: flex;
     flex-direction: row;
     height: 40%;
@@ -51,7 +51,7 @@
     padding: 1%;
 }
 
-.txt {
+.txtPost {
     display: flex;
     height: 100%;
     width: 40%;
@@ -59,7 +59,7 @@
     justify-content: center;
 }
 
-.textArea {
+.textAreaPost {
     display: flex;
     height: 30%;
     width: 50%;
@@ -69,7 +69,7 @@
     background-color: white;
 }
 
-.textAreaCont {
+.textAreaContPost {
     /* display: flex; */
     height: 80%;
     width: 50%;
@@ -83,13 +83,12 @@
     line-height: normal;
 }
 
-.btnEdit {
+.btnPost {
     display: flex;
     margin: 2%;
-    /* border-radius: 20px; */
 }
 
-.titletxt {
+.titletxtPost {
     /* height: 100%;
     width: 50%; */
     font-size: xx-large;

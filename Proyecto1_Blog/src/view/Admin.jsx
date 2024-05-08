@@ -1,9 +1,11 @@
 import './Admin.css'
 import opc from '../assets/img/menu-puntos-vertical.png'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, Suspense, lazy } from 'react'
 import PropTypes from 'prop-types'
 import Popup from './Popup'
+import Lng from './Lng'
 
+const Ldng = lazy(() => import('./Lng'))
 function Admin({setUrlActual}){
 
     const [usuario] = useState("Admin")
@@ -12,7 +14,15 @@ function Admin({setUrlActual}){
     const [selectedItemId, setSelectedItemId] = useState(null)
     const [data, setData] = useState([])
     const popupRef = useRef(null)
+    const [isLoading, setIsLoading] = useState(true)
 
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn')
+        if (isLoggedIn === 'false') {
+            window.location.pathname = '/login'
+            setUrlActual("/login")
+        }
+    }, [setUrlActual])
 
     async function apiCall() {
         const response = await fetch('http://127.0.0.1:3000/juego')
@@ -20,41 +30,8 @@ function Admin({setUrlActual}){
 
         const juegosData = jsonData.data
         setData(juegosData)
+        setIsLoading(false)
     }
-
-    useEffect(() => {
-        apiCall()
-    },[])
-
-    // async function post() {
-    //     try{
-    //         const response = await fetch('http://127.0.0.1:3000/juego', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({
-    //                 title: title, 
-    //                 cont: description, 
-    //                 img: img, 
-    //                 creator: imgFoot 
-
-    //             })
-    //         })
-
-    //         if (response.ok) {
-    //             setRutaActual('/home')
-    //         } else{
-    //             const data = await response.json()
-    //             setError(data.error || 'Error al crear el post')
-    //         }            
-
-    //     }catch(e){
-    //         console.error('Error al cargar la API: ', e)
-    //         setError('Error al cargar la API')
-            
-    //     }
-    // }
     
     useEffect(() => {
         function handleClick(event) {
@@ -75,17 +52,42 @@ function Admin({setUrlActual}){
     }
 
     const handleEdit = () => {
-        setUrlActual("/edit")
-        window.location.pathname = '/edit'
+        setUrlActual(`/edit/${selectedItemId}`)
+        window.history.pushState({},"",`/edit/${selectedItemId}`)
+        // window.location.pathname = '/edit'
         console.log(`Editar ${selectedItemId}`);
         setShowMenu(false);
     };
 
-    const handleDelete = () => {
-        console.log(`Eliminar ${selectedItemId}`);
-        setShowMenu(false);
-    };
+    const handleDelete = async() => {
 
+        console.log(`Eliminar ${selectedItemId}`)
+        setShowMenu(false);
+        // try {
+        //     const response = await fetch(`http://127.0.0.1:3000/juego/${selectedItemId}`, {
+        //         method: 'DELETE',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     })
+        //     if (response.ok) {
+        //         setUrlActual('/admin')
+        //         window.location.pathname = '/admin'
+        //         // window.history.pushState({},"","/")
+        //         // console.log(`Se borro el post ${blogId}`)
+        //     } else {
+        //         const data = await response.json()
+        //         console.log(`Error: ${data}`)
+        //     }
+        // } catch (error){
+        //     console.error('Error al cargar la API:', error)
+        // }
+    }
+    
+
+    useEffect(() => {
+        apiCall()
+    },[])
     // const handleNavigation = (ruta) => {
     //     setRutaActual(ruta) 
     //   }
@@ -94,18 +96,42 @@ function Admin({setUrlActual}){
         setBusqueda(event.target.value);
     };  
 
+    const handleAgregar = () => {
+        window.location.pathname = '/post'
+        setUrlActual('/post')
+        
+    }
+
     const resultados = data.filter((item) =>
         item.title.includes(busqueda) ||
         item.description.includes(busqueda) ||
         item.imgFoot.includes(busqueda)
     );
 
+    if(isLoading){
+        return (
+            <Suspense fallback={<Lng />}>
+              <Lng />
+            </Suspense>
+      )
+    }
+
+    const handleCerrarSession = () => {
+        alert("Se ha cerrado sesion")
+        localStorage.setItem('isLoggedIn', 'false')
+        const isLoggedIn = localStorage.getItem('isLoggedIn')
+        console.log(isLoggedIn)
+        setUrlActual('/home')
+        window.location.pathname = '/home'
+    }
+
+
     return(
         <>
             <div className="contenedor">
                 <div className="header">
                     <div className="header1">
-                        <div className="opciones"></div>
+                        <div className="opciones" onClick={handleAgregar}></div>
                     </div>
                     <div className="header2">
                         <a href='/home' className='txt'>
@@ -157,6 +183,7 @@ function Admin({setUrlActual}){
                 </div>
                 <div className="footer">
                     <h4 className='infoUsuario'>Tipo de Usuario: {usuario}</h4>
+                    <div className="infoUsuario" onClick={handleCerrarSession}>Cerrar Sesion</div>
                 </div>
             </div>        
         </>

@@ -27,14 +27,13 @@ function Login({setUrlActual}){
         const contraC = 'admin'
 
         if (username === usuarioC && contra === contraC){
-            localStorage.setItem("login", true)
+            localStorage.setItem('isLoggedIn', true)
             window.location.pathname = '/admin'
             setUrlActual("/admin")
-
+            
         } else{
-            alert('User or password incorrect')
+            alert(' Incorrect user or password')
         }
-
     }
 
     return(

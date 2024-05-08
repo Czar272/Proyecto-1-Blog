@@ -1,66 +1,105 @@
-// import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Edit.css' 
+// import PropTypes from 'prop-types's
+import PropTypes from 'prop-types'
+
 
 function Edit({setUrlActual}) {
-    // const [title, setTitle] = useState('')
-    // const [cont, setContent] = useState('')
-    // const [img, setImage] = useState('')
-    // const [creator, setImageDescription] = useState('')
-
-    // const getJuegoById = async() => {
-    //     try {
-    //         const res = await fetch(`http://127.0.0.1:3000/juego${blogId}`)
-    //         const jsonData = await res.json()
-    //         // console.log('Respuesta JSON:', jsonData)
-    //         const thisPost = jsonData.data[0]
-    //         // console.log('Datos del post:', thisPost)
-    //         setTitle(thisPost.title)
-    //         setContent(thisPost.content)
-    //         setImage(thisPost.item_image)
-    //         setImageDescription(thisPost.image_description)
-    //     } catch (error) {
-    //         console.error('Error al obtener el post:', error)
-    //         setError('Error al obtener el post')
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getJuegoByIdd()
-    //     // console.log(`El post al que se quiere acceder es: ${blogId}`)
-    // },[])
+    const [title, setTitle] = useState('')
+    const [cont, setCont] = useState('')
+    const [img, setImg] = useState('')
+    const [creator, setCreator] = useState('')
+    // const [error, setError] = useState('')
 
     const handleCancelar = () => {
         setUrlActual('/admin')
         window.location.pathname = '/admin'
     }
 
-    const handleEditar = () => {
-        setUrlActual('/admin')
-        window.location.pathname = '/admin'
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn')
+        if (isLoggedIn === 'false') {
+            window.location.pathname = '/login'
+            setUrlActual("/login")
+        }
+    }, [setUrlActual])
+
+    // const getThisJuego = async () => {
+
+    //     try {
+    //         const response = await fetch(`http://localhost:3000/juego/${id}`)
+    //         const jsonData = await response.json()
+    //         const thisPost = jsonData.data[0]
+            
+    //         setTitle(thisPost.title)
+    //         setCont(thisPost.cont)
+    //         setImg(thisPost.img)
+    //         setCreator(thisPost.creator)
+
+    //     } catch (error) {
+    //         console.error('Error al enviar la solicitud de edición:', error);
+    //         alert('Error al editar el juego. Por favor, inténtalo de nuevo más tarde');
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     getThisJuego()
+    // },[])
+
+    const handleEditar = async() => {
+        // try{
+        //     const response = await fetch('http://localhost:3000/juego/${id}', {
+        //         method: 'PUT',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             title: title,
+        //             cont: cont, 
+        //             img: img,
+        //             creator: creator
+        //         })
+        //     })
+        //     if (response.ok){
+        //         setUrlActual('/admin')
+        //         window.location.pathname = '/admin'
+        //     }else{
+        //         const data = await response.json()
+
+        //     }
+
+        // }catch(e){
+        //     console.error('Error al cargar la API:', error)
+        //     setError('Error al cargar la API')
+        // }
+
     }
     return(
         <>
         <div className="contenedorEdit">
             <div className="cuadro">
                 <div className="row">
+                    <div className="titletxt">Edit Post</div>
+                </div>
+                <div className="row">
                     <div className="txt">Title: </div>
-                    <input type="txt" className='textArea'/>
+                    <input type="txt" className='textArea' value={title} onChange={(e) => setTitle(e.target.value)}/>
                 </div>
                 <div className="rowCont">
                     <div className="txt">Description: </div>
-                    <input type="text" className='textAreaCont'/> 
+                    <input type="text" className='textAreaCont' value={cont} onChange={(e) => setCont(e.target.value)}/> 
                 </div>
                 <div className="row">
                     <div className="txt">Img Link: </div>
-                    <input type="text" className='textArea'/>
+                    <input type="text" className='textArea' value={img} onChange={(e) => setImg(e.target.value)}/>
                 </div>
                 <div className="row">
                     <div className="txt">Creator: </div>
-                    <input type="text" className='textArea'/>
+                    <input type="text" className='textArea' value={creator} onChange={(e) => setCreator(e.target.value)}/>
                 </div>
                 <div className="row">
-                    <button onClick={handleEditar}> Editar </button>
-                    <button onClick={handleCancelar}> Cancelar </button>
+                    <button className = 'btnEdit' onClick={handleEditar}> Editar </button>
+                    <button className = 'btnEdit' onClick={handleCancelar}> Cancelar </button>
                 </div>
             </div>
         </div>
@@ -68,5 +107,9 @@ function Edit({setUrlActual}) {
     )
 
 }
+
+Edit.propTypes = {
+    setUrlActual: PropTypes.func.isRequired
+};
 
 export default Edit;

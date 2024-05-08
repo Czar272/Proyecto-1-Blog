@@ -1,12 +1,23 @@
 import './Home.css'
 import { useState, useEffect } from 'react'
+// import Loading from './Loading'
 
 function Home(){
 
     const [usuario] = useState("Comun")
     const [busqueda, setBusqueda] = useState("")
     const [juegosData, setJuegosData] = useState([])
+    // const [loading, setLoading] = useState(true)
     // const [rutaActual, setRutaActual] = useState("Menu")
+
+    // useEffect(() => {
+    //     const isLoggedIn = localStorage.getItem('isLoggedIn');
+    //     if (!isLoggedIn) {
+    //         setUrlActual("/login");
+    //     } else {
+    //         apiCall();
+    //     }
+    // }, []);
 
     useEffect(() => {
         apiCall()
@@ -20,6 +31,9 @@ function Home(){
         setJuegosData(juegosData)
     }
 
+    const handleOpciones = () => {
+        alert("Opcion disponible unicamente para Admins")
+    } 
     // const handleNavigation = (ruta) => {
     //     setRutaActual(ruta) 
     //   }
@@ -27,6 +41,8 @@ function Home(){
     const handleBusqueda = (event) => {
         setBusqueda(event.target.value);
     };
+
+ 
     
 
     // const resultados = juegosData.filter((item) =>
@@ -37,10 +53,10 @@ function Home(){
 
     return(
         <>
-            <div className="contenedor">
+            <div className="contenedor" >
                 <div className="header">
                     <div className="header1">
-                        <div className="opciones"></div>
+                        <div className="opciones" onClick={handleOpciones}></div>
                     </div>
                     <div className="header2">
                         <a href='/home'  className='txt'>

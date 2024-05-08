@@ -1,0 +1,30 @@
+.cardCol1Lng {
+    background-color: black;
+    height: 100%;
+    max-width: 100%;
+    margin: 5%;
+}
+
+.cardCol2Lng {
+    background-color: black;
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    margin: 5%;
+}
+
+.cardLng {
+    display: flex;
+    flex-direction: row;
+    min-width: 50%;
+    height: 70%;
+    border: 1px solid black;
+    background-color: rgba(90, 89, 99, 0.776);
+    border-radius: 20px;
+    /* padding: 1%; */
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-right: 0;
+    /* scroll-snap-align: start; */
+    z-index: 1;
+}
