@@ -4,8 +4,9 @@ import { useEffect, useState, useRef, Suspense, lazy } from 'react'
 import PropTypes from 'prop-types'
 import Popup from './Popup'
 import Lng from './Lng'
+import useApi from './Hooks/useApi'
+const Ldng = lazy(() => import("./Lng"));
 
-const Ldng = lazy(() => import('./Lng'))
 function Admin({setUrlActual}){
 
     const [usuario] = useState("Admin")
@@ -108,7 +109,13 @@ function Admin({setUrlActual}){
         item.imgFoot.includes(busqueda)
     );
 
-    if(isLoading){
+    const { dataH, loadingH, errorH } = useApi('http://127.0.0.1:3000/juego');
+
+    if (errorH) {
+        return <div>Error: {errorH.message}</div>;
+    }
+
+    if(loadingH){
         return (
             <Suspense fallback={<Lng />}>
               <Lng />

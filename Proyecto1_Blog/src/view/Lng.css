@@ -1,30 +1,34 @@
-.cardCol1Lng {
-    background-color: black;
-    height: 100%;
-    max-width: 100%;
-    margin: 5%;
+@keyframes loading {
+    0%{
+        background-position: 200% 0;
+    }
+    100%{
+        background-position: -200% 0;
+    }
 }
 
-.cardCol2Lng {
-    background-color: black;
-    border: 1px solid black;
-    height: 100%;
-    width: 100%;
-    margin: 5%;
+.lng {
+    background: linear-gradient(90deg, #e0e0e0 25%, #c0c0c0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite ease-in-out;
 }
 
-.cardLng {
-    display: flex;
-    flex-direction: row;
-    min-width: 50%;
-    height: 70%;
-    border: 1px solid black;
-    background-color: rgba(90, 89, 99, 0.776);
-    border-radius: 20px;
-    /* padding: 1%; */
-    margin-left: 5%;
-    margin-right: 5%;
-    padding-right: 0;
-    /* scroll-snap-align: start; */
-    z-index: 1;
+.cardCol1L {
+    height: 100%;
+    width: 50%;
+    border-radius: 10px;
+    margin: 5px;
 }
+
+.cardCol2L {
+    height: 100%;
+    width: 50%;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+/* .imgNameL {
+    margin: 5%;
+    height: 50%;
+
+} */

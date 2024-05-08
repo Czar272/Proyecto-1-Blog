@@ -1,12 +1,15 @@
 import './Home.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense, Lazy } from 'react'
 // import Loading from './Loading'
+import Lng from './Lng'
 
 function Home(){
 
     const [usuario] = useState("Comun")
     const [busqueda, setBusqueda] = useState("")
     const [juegosData, setJuegosData] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
     // const [loading, setLoading] = useState(true)
     // const [rutaActual, setRutaActual] = useState("Menu")
 
@@ -29,6 +32,8 @@ function Home(){
 
         const juegosData = jsonData.data
         setJuegosData(juegosData)
+        setIsLoading(false)
+
     }
 
     const handleOpciones = () => {
@@ -50,6 +55,14 @@ function Home(){
     //     item.description.toLowerCase().includes(busqueda.toLowerCase()) ||
     //     item.imgFoot.toLowerCase().includes(busqueda.toLowerCase())
     // );
+
+    if(isLoading){
+        return (
+            <Suspense fallback={<Lng />}>
+              <Lng />
+            </Suspense>
+      )
+    }
 
     return(
         <>
