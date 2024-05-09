@@ -16,7 +16,7 @@ function Router({ruta}){
             return <Login setUrlActual={setUrlActual} />
         case "/admin":
             return <Admin ruta = {ruta} setUrlActual={setUrlActual} />
-        case "/edit":
+        case ruta.startsWith("/edit/") && ruta:
             return <Edit setUrlActual={setUrlActual}/>
         case "/post":
             return <Post setUrlActual={setUrlActual}/>

@@ -26,6 +26,8 @@ function Post({setUrlActual}) {
         }
     }, [setUrlActual])
 
+    
+
     return(
         <>
             <div className="contenedorPost">

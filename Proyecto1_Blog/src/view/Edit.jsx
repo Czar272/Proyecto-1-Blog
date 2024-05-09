@@ -50,7 +50,7 @@ function Edit({setUrlActual}) {
 
     const handleEditar = async() => {
         // try{
-        //     const response = await fetch('http://localhost:3000/juego/${id}', {
+        //     const response = await fetch(`http://localhost:3700/juego/${id}`, {
         //         method: 'PUT',
         //         headers: {
         //             'Content-Type': 'application/json'

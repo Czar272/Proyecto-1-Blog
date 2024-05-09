@@ -15,7 +15,7 @@ function Admin({setUrlActual}){
     const [data, setData] = useState([])
     const popupRef = useRef(null)
 
-    const { loadingH, errorH } = useApi('http://127.0.0.1:3000/juego');
+    const { loadingH, errorH } = useApi('http://127.0.0.1:3700/juego');
 
     useEffect(() => {
         if (errorH) {
@@ -35,7 +35,7 @@ function Admin({setUrlActual}){
     }, [setUrlActual])
 
     async function apiCall() {
-        const response = await fetch('http://127.0.0.1:3000/juego')
+        const response = await fetch('http://127.0.0.1:3700/juego')
         const jsonData = await response.json()
 
         const juegosData = jsonData.data
@@ -75,7 +75,7 @@ function Admin({setUrlActual}){
         console.log(`Eliminar ${selectedItemId}`)
         setShowMenu(false);
         try {
-            const response = await fetch(`http://127.0.0.1:3000/juego/${selectedItemId}`, {
+            const response = await fetch(`http://127.0.0.1:3700/juego/${selectedItemId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

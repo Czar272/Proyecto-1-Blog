@@ -27,6 +27,7 @@ app.post('/juego', async (req, res) => {
 
 app.get('/juego', async (req, res) => {
     const juego = await getAllPosts()
+    console.log(juego)
     res.status(juego.status).json(juego)
 })
 

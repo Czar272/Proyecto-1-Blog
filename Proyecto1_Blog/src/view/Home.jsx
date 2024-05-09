@@ -22,7 +22,7 @@ function Home(){
     //     }
     // }, []);
 
-    const { loadingH, errorH } = useApi('http://127.0.0.1:3000/juego')
+    const { loadingH, errorH } = useApi('http://127.0.0.1:3700/juego')
     
 
     useEffect(() => {
@@ -36,12 +36,11 @@ function Home(){
     },[])//eslint-disable-line react-hooks/exhaustive-deps
 
     async function apiCall() {
-        const response = await fetch('http://127.0.0.1:3000/juego')
+        const response = await fetch('http://127.0.0.1:3700/juego')
         const jsonData = await response.json()
 
         const juegosData = jsonData.data
         setJuegosData(juegosData)
-        setIsLoading(false)
 
     }
 
