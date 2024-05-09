@@ -1,31 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 const useApi = (url, options = {}) => {
-  const [dataH, setDataH] = useState(null);
-  const [loadingH, setLoadingH] = useState(false);
-  const [errorH, setErrorH] = useState(null);
+  const [dataH, setDataH] = useState(null)
+  const [loadingH, setLoadingH] = useState(false)
+  const [errorH, setErrorH] = useState(null)
+
+  const stringifiedOptions = JSON.stringify(options)
+
+
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoadingH(true);
+      if(options) {
+      setLoadingH(true)
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, options)
         if (!response.ok) {
-          throw new Error('Error al obtener los datos');
+          throw new Error('Error al obtener los datos')
         }
-        const jsonData = await response.json();
-        setDataH(jsonData);
+        const jsonData = await response.json()
+        setDataH(jsonData)
       } catch (error) {
-        setErrorH(error);
+        setErrorH(error)
       } finally {
-        setLoadingH(false);
+        setLoadingH(false)
       }
-    };
+    }
+    }   
 
-    fetchData();
-  }, [url, options]);
+    fetchData()
+  }, [url, stringifiedOptions])//eslint-disable-line react-hooks/exhaustive-deps
 
-  return { dataH, loadingH, errorH };
-};
+  return { dataH, loadingH, errorH }
+}
 
-export default useApi;
+export default useApi

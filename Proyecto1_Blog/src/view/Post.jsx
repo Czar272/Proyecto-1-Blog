@@ -21,6 +21,8 @@ function Post({setUrlActual}) {
         if (isLoggedIn === 'false') {
             window.location.pathname = '/login'
             setUrlActual("/login")
+            alert('Esta pagina esta disponible unicamente para el administrador')
+
         }
     }, [setUrlActual])
 

@@ -1,14 +1,14 @@
 import './Home.css'
-import { useState, useEffect, Suspense, Lazy } from 'react'
-// import Loading from './Loading'
+import { useState, useEffect } from 'react'
 import Lng from './Lng'
+import useApi from './Hooks/useApi'
 
 function Home(){
 
     const [usuario] = useState("Comun")
     const [busqueda, setBusqueda] = useState("")
     const [juegosData, setJuegosData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [ setIsLoading] = useState(true)
 
     // const [loading, setLoading] = useState(true)
     // const [rutaActual, setRutaActual] = useState("Menu")
@@ -22,9 +22,18 @@ function Home(){
     //     }
     // }, []);
 
+    const { loadingH, errorH } = useApi('http://127.0.0.1:3000/juego')
+    
+
+    useEffect(() => {
+        if (errorH) {
+            return <div>Error: {errorH.message}</div>;
+        }
+    }, [errorH])
+
     useEffect(() => {
         apiCall()
-    },[])
+    },[])//eslint-disable-line react-hooks/exhaustive-deps
 
     async function apiCall() {
         const response = await fetch('http://127.0.0.1:3000/juego')
@@ -56,11 +65,9 @@ function Home(){
     //     item.imgFoot.toLowerCase().includes(busqueda.toLowerCase())
     // );
 
-    if(isLoading){
+    if(loadingH){
         return (
-            <Suspense fallback={<Lng />}>
-              <Lng />
-            </Suspense>
+            <Lng />
       )
     }
 

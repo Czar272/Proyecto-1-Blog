@@ -1,11 +1,10 @@
 import './Admin.css'
 import opc from '../assets/img/menu-puntos-vertical.png'
-import { useEffect, useState, useRef, Suspense, lazy } from 'react'
+import { useEffect, useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 import Popup from './Popup'
 import Lng from './Lng'
 import useApi from './Hooks/useApi'
-const Ldng = lazy(() => import("./Lng"));
 
 function Admin({setUrlActual}){
 
@@ -15,13 +14,23 @@ function Admin({setUrlActual}){
     const [selectedItemId, setSelectedItemId] = useState(null)
     const [data, setData] = useState([])
     const popupRef = useRef(null)
-    const [isLoading, setIsLoading] = useState(true)
+
+    const { loadingH, errorH } = useApi('http://127.0.0.1:3000/juego');
+
+    useEffect(() => {
+        if (errorH) {
+            return <div>Error: {errorH.message}</div>;
+        }
+    }, [errorH])
+    
+
 
     useEffect(() => {
         const isLoggedIn = localStorage.getItem('isLoggedIn')
         if (isLoggedIn === 'false') {
             window.location.pathname = '/login'
             setUrlActual("/login")
+            alert('Esta pagina esta disponible unicamente para el administrador')
         }
     }, [setUrlActual])
 
@@ -31,9 +40,10 @@ function Admin({setUrlActual}){
 
         const juegosData = jsonData.data
         setData(juegosData)
-        setIsLoading(false)
     }
     
+    // console.log('hola')
+
     useEffect(() => {
         function handleClick(event) {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -64,34 +74,30 @@ function Admin({setUrlActual}){
 
         console.log(`Eliminar ${selectedItemId}`)
         setShowMenu(false);
-        // try {
-        //     const response = await fetch(`http://127.0.0.1:3000/juego/${selectedItemId}`, {
-        //         method: 'DELETE',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         }
-        //     })
-        //     if (response.ok) {
-        //         setUrlActual('/admin')
-        //         window.location.pathname = '/admin'
-        //         // window.history.pushState({},"","/")
-        //         // console.log(`Se borro el post ${blogId}`)
-        //     } else {
-        //         const data = await response.json()
-        //         console.log(`Error: ${data}`)
-        //     }
-        // } catch (error){
-        //     console.error('Error al cargar la API:', error)
-        // }
+        try {
+            const response = await fetch(`http://127.0.0.1:3000/juego/${selectedItemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (response.ok) {
+                setUrlActual('/admin')
+                window.location.pathname = '/admin'
+                console.log(`Se borro el post ${selectedItemId}`)
+            } else {
+                const data = await response.json()
+                console.log(`Error: ${data}`)
+            }
+        } catch (error){
+            console.error('Error al cargar la API:', error)
+        }
     }
     
 
     useEffect(() => {
         apiCall()
     },[])
-    // const handleNavigation = (ruta) => {
-    //     setRutaActual(ruta) 
-    //   }
 
     const handleBusqueda = (event) => {
         setBusqueda(event.target.value);
@@ -109,19 +115,7 @@ function Admin({setUrlActual}){
         item.imgFoot.includes(busqueda)
     );
 
-    const { dataH, loadingH, errorH } = useApi('http://127.0.0.1:3000/juego');
-
-    if (errorH) {
-        return <div>Error: {errorH.message}</div>;
-    }
-
-    if(loadingH){
-        return (
-            <Suspense fallback={<Lng />}>
-              <Lng />
-            </Suspense>
-      )
-    }
+    
 
     const handleCerrarSession = () => {
         alert("Se ha cerrado sesion")
@@ -132,6 +126,11 @@ function Admin({setUrlActual}){
         window.location.pathname = '/home'
     }
 
+    if (loadingH) {
+        return (
+        <Lng />
+        )
+    }  
 
     return(
         <>
