@@ -32,7 +32,7 @@ async function deleteJuego (id) {
 
         }
 
-        const [result] = await conn.query('DELETE FROM juego WHERE id = ${id}')
+        const [result] = await conn.query(`DELETE FROM juego WHERE id = ${id}`)
         return {status: 204, data: result}
 
     } catch(e){
